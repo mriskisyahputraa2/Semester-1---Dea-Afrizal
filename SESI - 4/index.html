@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CETAK CETREK LAMPU SESI 4</title>
 </head>
 <body>
-    <h1>adhakdhakhdakj</h1>
+    <img id="lampu1" src="assets/off.png" alt="off">
+    <h1>CETREKAN LAMPU ON OFF BRO</h1>
+    <button onclick="saklar('on')">NYALAKAN LAMPU</button>
+    <button onclick="saklar('off ')">MATIKAN LAMPU</button>
+
+    <script>
+        // func saklar off and onn
+        function saklar(params) {
+
+            // memanggil id lampu1
+            let lampu1 = document.querySelector("#lampu1");
+            
+            // jika parameter sama dengan string "on"
+            if (params == "on") {                
+                // maka lampu nyala
+                lampu1.src = "assets/on.png";
+            }
+            // jika parameter sama dengan string "off"
+            if(params == "off") {
+                // maka lampu mati
+                lampu1.src = "assets/off.png";
+            }
+
+            return lampu1;
+
+        }
+    </script>
 </body>
 </html>
