@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CETAK CETREK LAMPU SESI 4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <div
+      class="flex justify-center items-center min-h-screen w-full bg-slate-600 gap-10"
+    >
+      <!-- lampu 1, ruangan keluarga ada 3 lampu -->
+      <div class="flex flex-col gap-2 items-center">
+        <h3>Ruangan Keluarga 3 lampu</h3>
+        <img id="lampuKeluarga1" src="../assets/off.png" alt="off" />
+        <img id="lampuKeluarga2" src="../assets/off.png" alt="off" />
+        <img id="lampuKeluarga3" src="../assets/off.png" alt="off" />
+        <label
+          for="defaultToggleKeluarga"
+          class="relative h-8 w-14 cursor-pointer rounded-full bg-gray-300 transition [-webkit-tap-highlight-color:_transparent] has-[:checked]:bg-blue-500"
+        >
+          <input
+            type="checkbox"
+            id="defaultToggleKeluarga"
+            class="peer sr-only"
+            onchange="saklar()"
+          />
+
+          <span
+            class="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-gray-300 ring-[6px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-2 peer-checked:bg-white peer-checked:ring-transparent"
+          >
+          </span>
+        </label>
+      </div>
+      <!-- end -->
+
+      <!-- lampu 2, ruangan makan ada 1 lampu -->
+      <div class="flex flex-col gap-2 items-center">
+        <h3>Ruangan Makan</h3>
+        <img id="lampuRuangMakan" src="../assets/off.png" alt="off" />
+        <label
+          for="defaultToggleRuangMakan"
+          class="relative h-8 w-14 cursor-pointer rounded-full bg-gray-300 transition [-webkit-tap-highlight-color:_transparent] has-[:checked]:bg-blue-500"
+        >
+          <input
+            type="checkbox"
+            id="defaultToggleRuangMakan"
+            class="peer sr-only"
+            onchange="saklar()"
+          />
+
+          <span
+            class="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-gray-300 ring-[6px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-2 peer-checked:bg-white peer-checked:ring-transparent"
+          >
+          </span>
+        </label>
+      </div>
+      <!-- end -->
+
+      <!-- lampu 3, ruangan tidur ada 3 lampu -->
+      <div class="flex flex-col gap-2 items-center">
+        <h3>Ruangan Tidur</h3>
+        <img id="lampuTidur1" src="../assets/off.png" alt="off" />
+        <img id="lampuTidur2" src="../assets/off.png" alt="off" />
+        <img id="lampuTidur3" src="../assets/off.png" alt="off" />
+        <label
+          for="defaultToggleRuangTidur"
+          class="relative h-8 w-14 cursor-pointer rounded-full bg-gray-300 transition [-webkit-tap-highlight-color:_transparent] has-[:checked]:bg-blue-500"
+        >
+          <input
+            type="checkbox"
+            id="defaultToggleRuangTidur"
+            class="peer sr-only"
+            onchange="saklar()"
+          />
+
+          <span
+            class="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-gray-300 ring-[6px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-2 peer-checked:bg-white peer-checked:ring-transparent"
+          >
+          </span>
+        </label>
+      </div>
+      <!-- end -->
+
+      <!-- lampu 4, ruangan tamu 4 lampu -->
+      <div class="flex flex-col gap-2 items-center">
+        <h3>Ruangan Tamu</h3>
+        <img id="lampuTamu1" src="../assets/off.png" alt="off" />
+        <img id="lampuTamu2" src="../assets/off.png" alt="off" />
+        <img id="lampuTamu3" src="../assets/off.png" alt="off" />
+        <img id="lampuTamu4" src="../assets/off.png" alt="off" />
+        <label
+          for="defaultToggleRuangTamu"
+          class="relative h-8 w-14 cursor-pointer rounded-full bg-gray-300 transition [-webkit-tap-highlight-color:_transparent] has-[:checked]:bg-blue-500"
+        >
+          <input
+            type="checkbox"
+            id="defaultToggleRuangTamu"
+            class="peer sr-only"
+            onchange="saklar()"
+          />
+
+          <span
+            class="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-gray-300 ring-[6px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-2 peer-checked:bg-white peer-checked:ring-transparent"
+          >
+          </span>
+        </label>
+      </div>
+      <!-- end -->
+     
+
+    </div>
+
+    <script src="saklar.js"></script>
+  </body>
+</html>
