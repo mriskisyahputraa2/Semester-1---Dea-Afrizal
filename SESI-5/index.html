@@ -7,18 +7,43 @@
   </head>
   <body>
     <!-- INI KONTENT KITA -->
-    <div id="root"></div>
+    <div id="root">
+      <input type="text" placeholder="Username" id="usernameInput" />
+      <input type="password" placeholder="Password" id="passwordInput" />
+      <button onclick="onLogin()">Login</button>
+      <br />
+      <h1 id="admin">LOGIN SEBAGAI ADMIN</h1>
+      <h1 id="karyawan">LOGIN SEBAGAI KARYAWAN</h1>
+    </div>
 
     <script type="application/javascript">
-      let root = document.getElementById("root");
-      const myName = "Muhammad Rizki Syahputra";
+      // memanggil setiap element berdasarkann id
+      let usernameInput = document.getElementById("usernameInput");
+      let passwordInput = document.getElementById("passwordInput");
+      let admin = document.getElementById("admin");
+      let karyawan = document.getElementById("karyawan");
 
-      root.textContent = myName;
-      root.style.backgroundColor = "tomato";
-      root.style.color = "white";
-      root.style.fontSize = "2em";
-      root.style.textAlign = "center";
-      root.style.height = "100vh";
+      // menghilangkan h1 admin dan karyawan untuk sementara
+      admin.style.display = "none";
+      karyawan.style.display = "none";
+
+      function onLogin() {
+        console.log("testing");
+        console.log(usernameInput.value);
+        console.log(passwordInput.value);
+
+        if (usernameInput.value == "admin" && passwordInput.value == "admin") {
+          alert("Login sebagai admin");
+          karyawan.style.display = "none"; // menghilangkan h1 karyawan
+          admin.style.display = "block"; // memunulkan h2 admin
+        } else if (usernameInput.value == "" && passwordInput.value == "") {
+          alert("Masukkan username dan password dulu");
+        } else {
+          alert("Login sebagai karyawan");
+          admin.style.display = "none"; // menghilangkan h1 admin
+          karyawan.style.display = "block"; // memunculkan h1 karyawan
+        }
+      }
     </script>
   </body>
 </html>
