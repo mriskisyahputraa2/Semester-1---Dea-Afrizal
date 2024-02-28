@@ -11,6 +11,7 @@
       <input type="text" placeholder="Username" id="usernameInput" />
       <input type="password" placeholder="Password" id="passwordInput" />
       <button onclick="onLogin()" id="loginButton">Login</button>
+      <button onclick="onLogout()" id="logoutButton">Logout</button>
       <br />
       <h1 id="admin">LOGIN SEBAGAI ADMIN</h1>
       <h1 id="karyawan">LOGIN SEBAGAI KARYAWAN</h1>
@@ -21,49 +22,76 @@
       let usernameInput = document.getElementById("usernameInput");
       let passwordInput = document.getElementById("passwordInput");
       let loginButton = document.getElementById("loginButton");
+      let logoutButton = document.getElementById("logoutButton");
       let admin = document.getElementById("admin");
       let karyawan = document.getElementById("karyawan");
 
-      // menghilangkan h1 admin dan karyawan untuk sementara
+      // menghilangkan h1 admin dan karyawan untuk sementara ketika sebelum login
       admin.style.display = "none";
       karyawan.style.display = "none";
+      logoutButton.style.display = "none";
 
-      // menyimpan data Login di local storage browser
-      localStorage.setItem("username", usernameInput.value);
-
+      // cek jika login
       function onLogin() {
-        console.log("testing");
-        console.log(usernameInput.value);
-        console.log(passwordInput.value);
+        // menyimpan data Login di local storage browser
+        localStorage.setItem("username", usernameInput.value);
 
+        // jika sdh berhasil login maka button logout tampilkan
+        logoutButton.style.display = "block";
+
+        // jika username dan password yang dimasukkan adalah admin
         if (usernameInput.value == "admin" && passwordInput.value == "admin") {
-          alert("Login sebagai admin");
+          // maka hidden kan display usernameInput, passwordInput, loginButton, dan set localStoragenya sebagai admin
+          usernameInput.style.display = "none";
+          passwordInput.style.display = "none";
+          loginButton.style.display = "none";
           localStorage.setItem("role", "admin"); // localStorage role sebagai admin
 
           karyawan.style.display = "none"; // menghilangkan h1 karyawan
-          admin.style.display = "block"; // memunulkan h2 admin
+          admin.style.display = "block"; // memunculkan h2 admin
+
+          // jika user tidak memasukkan username dan password
         } else if (usernameInput.value == "" && passwordInput.value == "") {
+          // tampilkan pesan berikut
           alert("Masukkan username dan password dulu");
+
+          // jika yang dimasukkan bukan admin
         } else {
-          alert("Login sebagai karyawan");
+          // maka hidden kan display usernameInput, passwordInput, loginButton, dan set localStoragenya sebagai karyawan
+          usernameInput.style.display = "none";
+          passwordInput.style.display = "none";
+          loginButton.style.display = "none";
           localStorage.setItem("role", "karyawan"); // localStorage role sebagai karyawan
 
+          // tampilkan h1 karyawan dan hidden kan h1 admin
           admin.style.display = "none"; // menghilangkan h1 admin
           karyawan.style.display = "block"; // memunculkan h1 karyawan
         }
       }
 
+      // cek jika di localStorage yang dimasukkan sesuai dengan key username
       if (localStorage.getItem("username")) {
+        // maka hidden kan display usernameInput, passwordInput, loginButton.
         usernameInput.style.display = "none";
         passwordInput.style.display = "none";
         loginButton.style.display = "none";
+        logoutButton.style.display = "block";
+
+        // cek jika key localStorage yang dimasukkan sama dengan role admin
         if (localStorage.getItem("role") == "admin") {
+          // maka tampilkan h1 admin dan hidden kan h1 karyawan
           karyawan.style.display = "none";
           admin.style.display = "block";
         } else {
+          // maka tampilkan h1 karyawan dan hidden kan h1 admin
           admin.style.display = "none";
           karyawan.style.display = "block";
         }
+      }
+
+      function onLogout() {
+        localStorage.clear();
+        location.reload();
       }
     </script>
   </body>
