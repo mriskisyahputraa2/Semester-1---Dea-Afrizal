@@ -26,7 +26,7 @@
       let admin = document.getElementById("admin");
       let karyawan = document.getElementById("karyawan");
 
-      // menghilangkan h1 admin dan karyawan untuk sementara ketika sebelum login
+      // menghilangkan h1 admin, karyawan dan button logout untuk sementara ketika sebelum login
       admin.style.display = "none";
       karyawan.style.display = "none";
       logoutButton.style.display = "none";
@@ -54,6 +54,7 @@
         } else if (usernameInput.value == "" && passwordInput.value == "") {
           // tampilkan pesan berikut
           alert("Masukkan username dan password dulu");
+          logoutButton.style.display = "none";
 
           // jika yang dimasukkan bukan admin
         } else {
@@ -89,8 +90,11 @@
         }
       }
 
+      // function logout
       function onLogout() {
+        // bersihkan localStorage yang ada di browser admin/karyawan
         localStorage.clear();
+        // relod halaman browser admin/karyawan
         location.reload();
       }
     </script>
