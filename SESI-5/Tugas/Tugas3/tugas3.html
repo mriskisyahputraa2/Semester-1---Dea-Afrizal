@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style3.css" />
+  </head>
+
+  <body>
+    <!-- INI KONTENT KITA -->
+    <div id="root">
+      <div class="inputan">
+        <div class="log">
+          <h1>Login</h1>
+        </div>
+        <input
+          class="input1"
+          type="text"
+          placeholder="Username"
+          id="usernameInput"
+        />
+        <input
+          class="input2"
+          type="password"
+          placeholder="Password"
+          id="passwordInput"
+        />
+        <button onclick="onLogin()" id="loginButton">Login</button>
+        <button onclick="onLogout()" id="logoutButton">Logout</button>
+
+        <div class="register" id="register">
+          <a href="register.html">Regiter</a>
+        </div>
+      </div>
+      <br />
+
+      <div class="heading">
+        <h1 id="admin">LOGIN SEBAGAI ADMIN</h1>
+        <h1 id="karyawan">LOGIN SEBAGAI ANONYMOUS</h1>
+        <h1 id="riski">SELAMAT DATANG RISKI</h1>
+      </div>
+    </div>
+    <script src="script3.js"></script>
+  </body>
+</html>
