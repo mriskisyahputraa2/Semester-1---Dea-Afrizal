@@ -4,9 +4,11 @@ let loginButton = document.getElementById("loginButton");
 let logoutButton = document.getElementById("logoutButton");
 let admin = document.getElementById("admin");
 let karyawan = document.getElementById("karyawan");
+let riski = document.getElementById("riski");
 
 admin.style.display = "none";
 karyawan.style.display = "none";
+riski.style.display = "none";
 logoutButton.style.display = "none";
 
 function onLogin() {
@@ -24,6 +26,12 @@ function onLogin() {
   } else if (usernameInput.value == "" && passwordInput.value == "") {
     alert("Masukkan username dan password dulu");
     logoutButton.style.display = "none";
+  } else if (usernameInput.value == "riski" && passwordInput.value == "riski") {
+    usernameInput.style.display = "none";
+    passwordInput.style.display = "none";
+    loginButton.style.display = "none";
+    localStorage.setItem("role", "riski");
+    riski.style.display = "block";
   } else {
     usernameInput.style.display = "none";
     passwordInput.style.display = "none";
