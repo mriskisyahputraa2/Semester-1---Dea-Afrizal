@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- INI KONTENT KITA -->
+    <div id="root">
+      <input type="text" placeholder="Username" id="usernameInput" />
+      <input type="password" placeholder="Password" id="passwordInput" />
+      <button onclick="onLogin()" id="loginButton">Login</button>
+      <button onclick="onLogout()" id="logoutButton">Logout</button>
+      <br />
+      <h1 id="admin">LOGIN SEBAGAI ADMIN</h1>
+      <h1 id="karyawan">LOGIN SEBAGAI KARYAWAN</h1>
+    </div>
+
+    <script type="application/javascript">
+      // memanggil setiap element berdasarkann id
+      let usernameInput = document.getElementById("usernameInput");
+      let passwordInput = document.getElementById("passwordInput");
+      let loginButton = document.getElementById("loginButton");
+      let logoutButton = document.getElementById("logoutButton");
+      let admin = document.getElementById("admin");
+      let karyawan = document.getElementById("karyawan");
+
+      // menghilangkan h1 admin, karyawan dan button logout untuk sementara ketika sebelum login
+      admin.style.display = "none";
+      karyawan.style.display = "none";
+      logoutButton.style.display = "none";
+
+      // cek jika login
+      function onLogin() {
+        // menyimpan data Login di local storage browser
+        localStorage.setItem("username", usernameInput.value);
+
+        // jika sdh berhasil login maka button logout tampilkan
+        logoutButton.style.display = "block";
+
+        // jika username dan password yang dimasukkan adalah admin
+        if (usernameInput.value == "admin" && passwordInput.value == "admin") {
+          // maka hidden kan display usernameInput, passwordInput, loginButton, dan set localStoragenya sebagai admin
+          usernameInput.style.display = "none";
+          passwordInput.style.display = "none";
+          loginButton.style.display = "none";
+          localStorage.setItem("role", "admin"); // localStorage role sebagai admin
+
+          karyawan.style.display = "none"; // menghilangkan h1 karyawan
+          admin.style.display = "block"; // memunculkan h2 admin
+
+          // jika user tidak memasukkan username dan password
+        } else if (usernameInput.value == "" && passwordInput.value == "") {
+          // tampilkan pesan berikut
+          alert("Masukkan username dan password dulu");
+          logoutButton.style.display = "none";
+
+          // jika yang dimasukkan bukan admin
+        } else {
+          // maka hidden kan display usernameInput, passwordInput, loginButton, dan set localStoragenya sebagai karyawan
+          usernameInput.style.display = "none";
+          passwordInput.style.display = "none";
+          loginButton.style.display = "none";
+          localStorage.setItem("role", "karyawan"); // localStorage role sebagai karyawan
+
+          // tampilkan h1 karyawan dan hidden kan h1 admin
+          admin.style.display = "none"; // menghilangkan h1 admin
+          karyawan.style.display = "block"; // memunculkan h1 karyawan
+        }
+      }
+
+      // cek jika di localStorage yang dimasukkan sesuai dengan key username
+      if (localStorage.getItem("username")) {
+        // maka hidden kan display usernameInput, passwordInput, loginButton.
+        usernameInput.style.display = "none";
+        passwordInput.style.display = "none";
+        loginButton.style.display = "none";
+        logoutButton.style.display = "block";
+
+        // cek jika key localStorage yang dimasukkan sama dengan role admin
+        if (localStorage.getItem("role") == "admin") {
+          // maka tampilkan h1 admin dan hidden kan h1 karyawan
+          karyawan.style.display = "none";
+          admin.style.display = "block";
+        } else {
+          // maka tampilkan h1 karyawan dan hidden kan h1 admin
+          admin.style.display = "none";
+          karyawan.style.display = "block";
+        }
+      }
+
+      // function logout
+      function onLogout() {
+        // bersihkan localStorage yang ada di browser admin/karyawan
+        localStorage.clear();
+        // relod halaman browser admin/karyawan
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
+
+<!-- 
+  # LocalStorage = memiliki 2 kewajiban yang harus di isi yaitu: key dan value seperti contoh diatas 
+    key = "role" dan value = "admin/karyawan".
+    setItem(key, value) = digunakan untuk menyimpan data ke localStorage browser sementara
+    getItem(key) = digunakan untuk membaca data di localStorage 
+    removeItem(key) = digunakan untuk menghapus data di localStorage
+    clear(key) = digunakan untuk menghapus semua data yang ada di localStorage  
+
+
+ -->
