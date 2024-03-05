@@ -61,11 +61,40 @@ button {
 }
 
 .register a {
-  font-family: monospace;
-  text-decoration: none;
-  margin-top: 5px;
+  font-size: 12px;
+}
+
+.containerReg {
+  width: 200px;
+  height: 270px;
+  background-color: white;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.containerReg h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.containerReg label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
   font-weight: bold;
-  font-size: 10px;
+}
+.containerReg input {
+  border: 2px solid black;
+  border-radius: 3px;
+  padding: 5px;
+}
+.containerReg button {
+  margin-top: 10px;
+}
+
+.containerReg a {
   text-align: right;
+  font-size: 12px;
 }

@@ -5,6 +5,7 @@ let logoutButton = document.getElementById("logoutButton");
 let admin = document.getElementById("admin");
 let karyawan = document.getElementById("karyawan");
 let riski = document.getElementById("riski");
+let register = document.getElementById("register");
 
 admin.style.display = "none";
 karyawan.style.display = "none";
@@ -18,26 +19,27 @@ function onLogin() {
   if (usernameInput.value == "admin" && passwordInput.value == "admin") {
     usernameInput.style.display = "none";
     passwordInput.style.display = "none";
+    register.style.display = "none";
     loginButton.style.display = "none";
     localStorage.setItem("role", "admin");
-
     karyawan.style.display = "none";
     admin.style.display = "block";
   } else if (usernameInput.value == "" && passwordInput.value == "") {
-    alert("Masukkan username dan password dulu");
+    alert("Masukkan username dan password dulu / daftar akun dulu");
     logoutButton.style.display = "none";
   } else if (usernameInput.value == "riski" && passwordInput.value == "riski") {
     usernameInput.style.display = "none";
     passwordInput.style.display = "none";
     loginButton.style.display = "none";
+    register.style.display = "none";
     localStorage.setItem("role", "riski");
     riski.style.display = "block";
   } else {
     usernameInput.style.display = "none";
     passwordInput.style.display = "none";
     loginButton.style.display = "none";
+    register.style.display = "none";
     localStorage.setItem("role", "karyawan");
-
     admin.style.display = "none";
     karyawan.style.display = "block";
   }
