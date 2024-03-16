@@ -10,19 +10,22 @@
     <div class="container">
       <!-- navbar start -->
       <nav>
-        <a href="#">HOME</a>
-        <a onclick="darkMode()">MODE</a>
+        <a onclick="reRender()" id="home">HOME</a>
+        <a onclick="darkMode()" id="mode">MODE</a>
       </nav>
       <!-- navbar end -->
       <h1>SESI - 6</h1>
 
-      <!-- manipulasi element html -->
-      <p id="info"></p>
+      <!-- manipulasi element html, untuk memberi tahu informasi berapa kali darkMode di klik   -->
+      <p class="info" id="info"></p>
     </div>
 
     <!-- initializing function script -->
     <script>
       let body = document.body;
+      let info = document.getElementById("info");
+      let mode = document.getElementById("mode");
+      let home = document.getElementById("home");
 
       // variabel untuk menentukan limit dark mode di klik yaitu 5
       const darkLimit = 5;
@@ -30,9 +33,15 @@
       let darkRemainingLeft;
 
       function darkMode() {
+        // cek ketika dataRemainingLeft nya sama dengan 1, maka
         if (darkRemainingLeft == 1) {
           // tampilkan text ini
-          console.log("jatah dark mode anda habis");
+          info.textContent = "JATAH FITUR DARKMODE ANDA SUDAH HABIS";
+
+          // dan link a dengan text mode dihilangkan
+          mode.style.display = "none";
+          // tulisan Home diubah menjadi Restart
+          home.textContent = "RESTART";
           return;
         }
 
@@ -40,7 +49,15 @@
         darkCounter += 1;
         // variabel untuk menentukan berapa lagi limit darkModenya
         darkRemainingLeft = darkLimit - darkCounter;
+
+        // render ke info element
+        info.textContent = `Darkmode dipakai ${darkCounter}x, tersisa${darkRemainingLeft}`;
+
         body.classList.toggle("dark");
+      }
+
+      function reRender() {
+        location.reload();
       }
     </script>
   </body>
