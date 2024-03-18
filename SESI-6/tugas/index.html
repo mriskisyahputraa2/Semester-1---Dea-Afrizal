@@ -8,36 +8,60 @@
   </head>
   <body>
     <div class="container">
-      <!-- navbar start -->
       <nav>
         <a onclick="reRender()" id="home">HOME</a>
         <a onclick="darkMode()" id="mode">MODE</a>
       </nav>
-      <!-- navbar end -->
       <h1>SESI - 6</h1>
 
-      <!-- manipulasi element html, untuk memberi tahu informasi berapa kali darkMode di klik   -->
       <p class="info" id="info"></p>
     </div>
 
-    <!-- initializing function script -->
     <script>
+      // memanggil id dari element html
       let body = document.body;
       let info = document.getElementById("info");
       let mode = document.getElementById("mode");
       let home = document.getElementById("home");
 
-      // variabel untuk menentukan limit dark mode di klik yaitu 5
-      const darkLimit = 5;
-      let darkCounter = 0;
-      let darkRemainingLeft;
+      // Variabel untuk limit dark mode (disimpan di luar fungsi darkMode)
+      const darkLimit = 5; // menentukan limit dark mode yaitu 5
+      let darkCounter = 0; // menentukan nilai awal dari dark mode
+      let darkRemainingLeft; // untuk menyimpan sisa limit(v-darkLimit) dark mode
+
+      // Inisialisasi (disimpan di luar fungsi darkMode).
+      let currentMode = localStorage.getItem("mode"); // untuk mendapatkan "MODE" yang tersimpan di localStorage dan menyimpan ke v-currentMode
+
+      //  jika currentMode === dark
+      if (currentMode === "dark") {
+        body.classList.add("dark"); // jika ya, menambahkan kelas 'dark' ke elemen body
+        mode.innerHTML = "MODE LIGHT"; // mengubah text elemen tulisan "MODE" menjadi "MODE LIGHT"
+      }
 
       function darkMode() {
-        // cek ketika dataRemainingLeft nya sama dengan 1, maka
+        // Toggle mode (light <-> dark)
+        // cek elemen body memiliki kelas 'dark'
+        if (body.classList.contains("dark")) {
+          mode.innerHTML = "MODE DARK"; // jika ya, ubah text elemen "MODE" menjadi "MODE DARK"
+          body.classList.remove("dark"); // hapus kelas "dark" dari element body
+        } else {
+          // jika tidak,
+          mode.innerHTML = "MODE LIGHT"; //mengubah text "MODE" menjadi "MODE LIGHT"
+          body.classList.add("dark"); // dan tambahkan kelas "dark"
+        }
+
+        // Simpan mode saat ini ke local storage
+        localStorage.setItem(
+          "mode", // "mode" sebagai key untuk menyimpan data mode
+
+          // cek ternary, apakah element body memiliki kelas "dark"?
+          body.classList.contains("dark") ? "dark" : "light" // jika ya, maka nilai dark akan disimpan. jika tidak maka nilai light akan disimpan
+        );
+
+        // Logika limit dark mode (disertakan di dalam fungsi darkMode)
         if (darkRemainingLeft == 1) {
           // tampilkan text ini
           info.textContent = "JATAH FITUR DARKMODE ANDA SUDAH HABIS";
-
           // dan link a dengan text mode dihilangkan
           mode.style.display = "none";
           // tulisan Home diubah menjadi Restart
@@ -45,15 +69,11 @@
           return;
         }
 
-        // menambahkan darkCounter += 1
         darkCounter += 1;
-        // variabel untuk menentukan berapa lagi limit darkModenya
         darkRemainingLeft = darkLimit - darkCounter;
 
         // render ke info element
-        info.textContent = `Darkmode dipakai ${darkCounter}x, tersisa${darkRemainingLeft}`;
-
-        body.classList.toggle("dark");
+        info.textContent = `Darkmode dipakai ${darkCounter}x, tersisa ${darkRemainingLeft}`;
       }
 
       function reRender() {
@@ -64,6 +84,15 @@
 </html>
 
 <!-- 
-# classList adalah fitur penting untuk memanipulasi atribut kelas elemen HTML
-  - toggle():  Mengganti keberadaan nama kelas. Jika kelas ada, maka dihapus; jika tidak ada, maka ditambahkan.
+  # classList: adalah fitur penting untuk memanipulasi atribut kelas elemen HTML.  Dengan classList, Anda dapat menambah, menghapus, atau mengganti kelas pada elemen dengan lebih mudah dan aman dibandingkan dengan memanipulasi properti className secara langsung.
+
+  # getItem: untuk membaca data mode di localStorage
+
+  # setItem(key, value) = digunakan untuk menyimpan data ke localStorage browser sementara
+
+  #.contains("dark"): Method contains dipanggil pada objek classList. contains menerima argumen berupa nama kelas ("dark" dalam kasus ini).
+  # Fungsi contains mengembalikan nilai boolean (true/false):
+
+  true: Jika elemen body memiliki kelas "dark" dalam daftar kelasnya.
+  false: Jika elemen body tidak memiliki kelas "dark" dalam daftar kelasnya.
  -->
