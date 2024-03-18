@@ -1,0 +1,11 @@
+{
+  "name": "sesi-7-nodejs",
+  "version": "1.0.0",
+  "description": "sesi 7 nodejs backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "riski",
+  "license": "ISC"
+}
